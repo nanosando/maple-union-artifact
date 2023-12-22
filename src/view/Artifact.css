@@ -1,0 +1,132 @@
+
+.contents {
+    display: flex;
+    margin: 8px auto 8px auto;
+}
+
+.container {
+    margin: 8px auto;
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+.rowMargin {
+    margin: 16px 0px;
+}
+
+.cards {
+}
+
+.card {
+    display: flex;
+    aspect-ratio: 1 / 1;
+}
+
+.infos {
+    margin: 0px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoCard {
+    width: 32em;
+    margin: 16px 16px;
+}
+
+.infoText {
+    font-family: 'MaplestoryOTFBold';
+    font-size: x-large;
+    color: black;
+    margin-right: 16px;
+    line-height: 1.8em;
+}
+
+.infoTextSmall {
+    font-family: 'MaplestoryOTFBold';
+    font-size: large;
+    color: black;
+}
+
+.infoTextSmallError {
+    font-family: 'MaplestoryOTFBold';
+    font-size: large;
+    color: red;
+}
+
+.levelForm {
+    display: flex;
+    flex-direction: row;
+}
+
+.apInfo {
+    margin: 8px 16px;
+}
+
+.spin {
+    display: flex;
+    justify-content: center;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardLevelController {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.cardLevelText {
+    align-items: center;
+    font-family: 'MaplestoryOTFBold';
+    font-size: large;
+    color: black;
+    line-height: 2em;
+
+    margin-right: 16px;
+    margin-left: 16px;
+}
+
+.cardOptions {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 8px;
+}
+
+.optionSelect {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.cardDisMsg {
+    font-family: 'MaplestoryOTFBold';
+    font-size: x-large;
+    color: black;
+    justify-content: center;
+    display: block;
+    align-items: center;
+}
+
+.abilityInfo {
+    margin: 8px 16px;
+}
+
+.resetButton {
+    margin: 4px 16px;
+}
+
+td {
+    text-align: center;
+    padding-right: 4px;
+    padding-left: 4px;
+}
