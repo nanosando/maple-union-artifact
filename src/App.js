@@ -14,9 +14,9 @@ function App() {
           <div className="titleText"> 메이플 유니온 아티팩트 </div>
         </a>
       </Header>
-      <div>
+      <Layout className="whiteback">
         <Artifact />
-      </div>
+      </Layout>
       <Footer className="footer">
         <a href="https://github.com/nanosando" target="_blank">
           <img src={gLogo} width='30px'></img>

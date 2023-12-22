@@ -5,8 +5,8 @@ import { Layout, Button, Spin, Card, Col, Row, InputNumber, Select, Popconfirm }
 
 const { Content } = Layout;
 
-const cardStyle = { "aspect-ratio": "1 / 1", "width": "16em" };
-const cardNoStyle = { "aspect-ratio": "1 / 1", "width": "16em", "display": "flex", "align-items": "center", "justify-content": "center" };
+const cardStyle = { "aspect-ratio": "1 / 1", "width": "16em", "background-color": "rgb(242, 242, 242)" };
+const cardNoStyle = { "aspect-ratio": "1 / 1", "width": "16em", "display": "flex", "align-items": "center", "justify-content": "center", "background-color": "rgb(242, 242, 242)" };
 
 const abilities = [
     {"label": "올스탯 증가", "unit": "", "max": 150, "per_level": 15},

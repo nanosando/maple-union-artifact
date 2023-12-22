@@ -31,7 +31,12 @@
   font-family: 'MaplestoryOTFBold';
 }
 
+.whiteback {
+  background-color: white;
+}
+
 .footer {
   display: flex;
   justify-content: center;
+  background-color: white;
 }
