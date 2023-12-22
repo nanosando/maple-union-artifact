@@ -8,6 +8,9 @@
 .header{
   display: flex;
   background-color: #ffffff;
+  justify-content: center;
+  text-align: center;
+  padding-top: 8px;
 }
 
 @media (max-width: 1000px) {
