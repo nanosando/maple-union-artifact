@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/maple-union-artifact/static/css/main.aeb3b5a8.css",
+    "main.css": "/maple-union-artifact/static/css/main.dfd8326d.css",
     "main.js": "/maple-union-artifact/static/js/main.1d535b00.js",
     "static/js/787.624a2dd5.chunk.js": "/maple-union-artifact/static/js/787.624a2dd5.chunk.js",
     "index.html": "/maple-union-artifact/index.html",
-    "main.aeb3b5a8.css.map": "/maple-union-artifact/static/css/main.aeb3b5a8.css.map",
+    "main.dfd8326d.css.map": "/maple-union-artifact/static/css/main.dfd8326d.css.map",
     "main.1d535b00.js.map": "/maple-union-artifact/static/js/main.1d535b00.js.map",
     "787.624a2dd5.chunk.js.map": "/maple-union-artifact/static/js/787.624a2dd5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aeb3b5a8.css",
+    "static/css/main.dfd8326d.css",
     "static/js/main.1d535b00.js"
   ]
 }
