@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/maple-union-artifact/static/css/main.9247d6f0.css",
+    "main.js": "/maple-union-artifact/static/js/main.286f24e7.js",
+    "static/js/787.624a2dd5.chunk.js": "/maple-union-artifact/static/js/787.624a2dd5.chunk.js",
+    "index.html": "/maple-union-artifact/index.html",
+    "main.9247d6f0.css.map": "/maple-union-artifact/static/css/main.9247d6f0.css.map",
+    "main.286f24e7.js.map": "/maple-union-artifact/static/js/main.286f24e7.js.map",
+    "787.624a2dd5.chunk.js.map": "/maple-union-artifact/static/js/787.624a2dd5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9247d6f0.css",
+    "static/js/main.286f24e7.js"
+  ]
+}
