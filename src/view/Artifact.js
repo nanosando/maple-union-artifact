@@ -17,12 +17,12 @@ const abilities = [
     {"label": "몬스터 방어율 무시 증가", "unit": "%", "max": 20, "per_level": 2},
     {"label": "버프 지속시간 증가", "unit": "%", "max": 20, "per_level": 2},
     {"label": "재사용 대기시간 미적용 확률 증가", "unit": "%", "max": 7.50, "per_level": 0.75},
-    {"label": "메소 획득량 증가", "unit": "%", "max": 12, "per_level": 1.2},
-    {"label": "아이템 드롭률 증가", "unit": "%", "max": 12, "per_level": 1.2},
+    {"label": "메소 획득량 증가", "unit": "%", "max": 12, "per_level": 1},
+    {"label": "아이템 드롭률 증가", "unit": "%", "max": 12, "per_level": 1},
     {"label": "크리티컬 확률 증가", "unit": "%", "max": 20, "per_level": 2},
     {"label": "크리티컬 데미지 증가", "unit": "%", "max": 4.00, "per_level": 0.4},
-    {"label": "추가 경험치 획득 증가", "unit": "%", "max": 12, "per_level": 1.2},
-    {"label": "상태이상 내성 증가", "unit": "", "max": 12, "per_level": 1.2},
+    {"label": "추가 경험치 획득 증가", "unit": "%", "max": 12, "per_level": 1},
+    {"label": "상태이상 내성 증가", "unit": "", "max": 12, "per_level": 1},
     {"label": "소환수 지속시간 증가", "unit": "%", "max": 20, "per_level": 2},
     {"label": "파이널 어택류 스킬 데미지 증가", "unit": "%", "max": 30, "per_level": 3},
 ];
@@ -270,6 +270,9 @@ function Artifact(){
                 optionsLevelArr[k] = 10;
 
             optionsArr[k] = optionsLevelArr[k] * abilities[k].per_level;
+
+            if (abilities[k].max === 12)
+                optionsArr[k] += Math.floor(optionsLevelArr[k] / 5);
         }
 
         return (
@@ -418,7 +421,6 @@ function Artifact(){
                             <div className="infoText"> 현재 적용 능력치 </div>
                         </div>
                         <div className="abilityInfo">
-                            <div className="infoTextSmallError"> 중간 수치는 부정확할 수 있습니다 (수정 예정) </div>
                             { data.cards? makeFinalAbility() : <></>}
                         </div>
                     </Card>
