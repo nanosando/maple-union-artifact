@@ -259,20 +259,21 @@ function Artifact(){
             for (var j = 0; j < 3; j++){
                 if (data.cards[i].enabled) {
                     optionsLevelArr[data.cards[i].selectedOptions[j]] += data.cards[i].level;
-                    if (optionsLevelArr[data.cards[i].selectedOptions[j]] > 10)
-                    optionsLevelArr[data.cards[i].selectedOptions[j]] = 10;
                 }
             }
         }
 
         for (var k = 0; k < numOptions; k++) {
-            if (optionsLevelArr > 10)
+            const originalLevel = optionsLevelArr[k];
+            if (optionsLevelArr[k] > 10)
                 optionsLevelArr[k] = 10;
 
             optionsArr[k] = optionsLevelArr[k] * abilities[k].per_level;
 
             if (abilities[k].max === 12)
                 optionsArr[k] += Math.floor(optionsLevelArr[k] / 5);
+
+            optionsLevelArr[k] = originalLevel;
         }
 
         return (
@@ -281,9 +282,9 @@ function Artifact(){
                     if (item === 0)
                         return acc;
                     else {
-                        acc.push(<tr>
+                        acc.push(<tr className={optionsLevelArr[index] > 10? "redText" : ""}>
                             <td> {abilities[index].label} </td>
-                            <td> Lv. {optionsLevelArr[index]} </td>
+                            <td> Lv. {optionsLevelArr[index] > 10? 10 : optionsLevelArr[index]} </td>
                             <td> {item} {abilities[index].unit} </td>
                         </tr>);
                         return acc;
