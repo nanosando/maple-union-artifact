@@ -27,6 +27,8 @@ const abilities = [
     {"label": "파이널 어택류 스킬 데미지 증가", "unit": "%", "max": 30, "per_level": 3},
 ];
 
+const usedAPs = [0, 0, 1, 3, 5, 8];
+
 function Artifact(){
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState({});
@@ -73,16 +75,20 @@ function Artifact(){
         const newData = JSON.parse(JSON.stringify(data));
 
         const maxCards = 3 + Math.floor(value / 10);
-
+        var newApUsed = 0;
         for(var i = 0; i < 9; i++){
-            if (i < maxCards)
+            if (i < maxCards) {
                 newData.cards[i].enabled = true;
-            else
+                newApUsed += newData.cards[i].usedAP;
+            }
+            else {
                 newData.cards[i].enabled = false;
+            }
         }
 
         newData.level = value;
         newData.apAll = getApFromLevel(value);
+        newData.apUsed = newApUsed;
         newData.apRemained = getApFromLevel(value) - newData.apUsed;
 
         if (newData.apAll !== (newData.apRemained + newData.apUsed) || newData.apRemained < 0){
@@ -106,36 +112,20 @@ function Artifact(){
             return;
         }
 
-        if (adder > 0) {
-            if (newLevel === 2) {
-                newData.apRemained = newData.apRemained - 1;
-                newData.apUsed = newData.apUsed + 1;
-            }
-            if (newLevel === 3 || newLevel === 4) {
-                newData.apRemained = newData.apRemained - 2;
-                newData.apUsed = newData.apUsed + 2;
-            }
-            if (newLevel === 5) {
-                newData.apRemained = newData.apRemained - 3;
-                newData.apUsed = newData.apUsed + 3;
-            }
-        }
-        else {
-            if (newLevel === 1) {
-                newData.apRemained = newData.apRemained + 1;
-                newData.apUsed = newData.apUsed - 1;
-            }
-            if (newLevel === 2 || newLevel === 3) {
-                newData.apRemained = newData.apRemained + 2;
-                newData.apUsed = newData.apUsed - 2;
-            }
-            if (newLevel === 4) {
-                newData.apRemained = newData.apRemained + 3;
-                newData.apUsed = newData.apUsed - 3;
-            }
-        }
-
         newData.cards[cardNum].level = newLevel;
+        newData.cards[cardNum].usedAP = usedAPs[newLevel];
+
+        // Update global info
+        const maxCards = 3 + Math.floor(newData.level / 10);
+
+        var newApUsed = 0;
+        for(var i = 0; i < 9; i++) {
+            if (i < maxCards) {
+                newApUsed += newData.cards[i].usedAP;
+            }
+        }
+        newData.apUsed = newApUsed;
+        newData.apRemained = getApFromLevel(newData.level) - newData.apUsed;
 
         if (newData.apAll !== (newData.apRemained + newData.apUsed) || newData.apRemained < 0){
             setApError(true);
@@ -143,7 +133,6 @@ function Artifact(){
         else {
             setApError(false);
         }
-
         setData(newData);
         localStorage.setItem('union_data', JSON.stringify(newData));
     }
@@ -167,6 +156,7 @@ function Artifact(){
                 cardNum: i,
                 enabled: false,
                 level: 1,
+                usedAP: 0,
                 selectedOptions: [0, 1, 2],
                 options0: makeSelectOptions([1, 2]),
                 options1: makeSelectOptions([0, 2]),
@@ -189,7 +179,23 @@ function Artifact(){
 
         if (prevData) {
             const loadedData = JSON.parse(prevData);
+            for(var k = 0; k < 9; k++) {
+                loadedData.cards[k].usedAP = usedAPs[loadedData.cards[k].level];
+            }
+
+            const maxCards = 3 + Math.floor(loadedData.level / 10);
+
+            var newApUsed = 0;
+            for(var n = 0; n < 9; n++) {
+                if (n < maxCards) {
+                    newApUsed += loadedData.cards[n].usedAP;
+                }
+            }
+            loadedData.apUsed = newApUsed;
+            loadedData.apRemained = getApFromLevel(loadedData.level) - loadedData.apUsed;
+
             setData(loadedData);
+            localStorage.setItem('union_data', JSON.stringify(loadedData));
             setLoading(false);
             return;
         }
@@ -210,6 +216,7 @@ function Artifact(){
                 cardNum: i,
                 enabled: false,
                 level: 1,
+                usedAP: 0,
                 selectedOptions: [0, 1, 2],
                 options0: makeSelectOptions([1, 2]),
                 options1: makeSelectOptions([0, 2]),
@@ -242,9 +249,9 @@ function Artifact(){
                     </Button>
                 </div>
                 <div className="cardOptions">
-                    <Select className="optionSelect" defaultValue={0} value={data.cards[cardNum].selectedOptions[0]} options={data.cards[cardNum].options0} onChange={(value)=>onChangeOption(cardNum, value, 0)}></Select>
-                    <Select className="optionSelect" defaultValue={1} value={data.cards[cardNum].selectedOptions[1]} options={data.cards[cardNum].options1} onChange={(value)=>onChangeOption(cardNum, value, 1)}></Select>
-                    <Select className="optionSelect" defaultValue={2} value={data.cards[cardNum].selectedOptions[2]} options={data.cards[cardNum].options2} onChange={(value)=>onChangeOption(cardNum, value, 2)}></Select>
+                    <Select className="optionSelect" popupMatchSelectWidth={false} defaultValue={0} value={data.cards[cardNum].selectedOptions[0]} options={data.cards[cardNum].options0} onChange={(value)=>onChangeOption(cardNum, value, 0)}></Select>
+                    <Select className="optionSelect" popupMatchSelectWidth={false} defaultValue={1} value={data.cards[cardNum].selectedOptions[1]} options={data.cards[cardNum].options1} onChange={(value)=>onChangeOption(cardNum, value, 1)}></Select>
+                    <Select className="optionSelect" popupMatchSelectWidth={false} defaultValue={2} value={data.cards[cardNum].selectedOptions[2]} options={data.cards[cardNum].options2} onChange={(value)=>onChangeOption(cardNum, value, 2)}></Select>
                 </div>
             </div>
         </Card>);
